@@ -63,23 +63,23 @@
                 <div class="secao-conteudo">
                     <div class="linha">
                         <div class="campo">
-                            <label>Marca:</label> <input type="text">
+                            <label>Marca:</label> <input type="text" placeholder="Ex: Chevrolet">
                         </div>
                         <div class="campo">
-                            <label>Modelo:</label> <input type="text">
+                            <label>Modelo:</label> <input type="text" placeholder="Ex: Corsa">
                         </div>
                     </div>
                     <div class="linha">
                         <div class="campo">
-                            <label>Motor:</label> <input type="text">
+                            <label>Motor/Versão:</label> <input type="text" placeholder="Ex: Classic 1.0">
                         </div>
                         <div class="campo w-40">
-                            <label>Ano:</label> <input type="text" maxlength="4">
+                            <label>Ano:</label> <input type="text" maxlength="4" placeholder="2004">
                         </div>
                     </div>
                     <div class="linha">
                         <div class="campo">
-                            <label>Entrada:</label> <input type="date">
+                            <label>Data Entrada:</label> <input type="date">
                         </div>
                     </div>
                 </div>
@@ -93,12 +93,12 @@
                             <label>Placa:</label> <input type="text" style="text-transform: uppercase;">
                         </div>
                         <div class="campo">
-                            <label>KM:</label> <input type="text">
+                            <label>KM Entrada:</label> <input type="text" placeholder="Ex: 56.400">
                         </div>
                     </div>
                     <div class="linha">
                         <div class="campo">
-                            <label>Saída:</label> <input type="date">
+                            <label>Data Saída:</label> <input type="date">
                         </div>
                         <div class="campo w-50">
                             <label>Nº O.S.:</label> <input type="text" id="numero-os" style="text-align: center; font-weight: bold; color: red;">
@@ -112,26 +112,26 @@
             <div class="secao-titulo">4. DIAGNÓSTICO E SERVIÇOS EXECUTADOS</div>
             <div class="secao-conteudo">
                 <div class="bloco-texto">
-                    <label>Relato do Cliente:</label>
-                    <textarea placeholder="Problemas relatados..."></textarea>
+                    <label>Relato do Cliente / Problema Apresentado:</label>
+                    <textarea placeholder="Ex: O carro não estava ligando mesmo com chupeta..."></textarea>
                 </div>
                 
                 <table class="tabela-servicos" id="tabela-itens">
                     <thead>
                         <tr>
-                            <th>Descrição</th>
+                            <th>Descrição (Peça ou Serviço)</th>
                             <th width="15%">Peça (R$)</th>
                             <th width="15%">M. Obra (R$)</th>
                             <th width="15%">Total (R$)</th>
-                            <th width="5%" class="no-print">Ação</th>
+                            <th width="5%" class="no-print" style="text-align: center;">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="text"></td>
+                            <td><input type="text" placeholder="Ex: Bateria Nova 60Ah"></td>
                             <td><input type="text" class="dinheiro val-peca" value="0,00" oninput="mascaraMoeda(this)"></td>
                             <td><input type="text" class="dinheiro val-mo" value="0,00" oninput="mascaraMoeda(this)"></td>
-                            <td><input type="text" class="dinheiro val-total-linha" value="0,00" readonly></td>
+                            <td><input type="text" class="dinheiro val-total-linha" value="0,00" readonly style="font-weight:bold; color:var(--vermelho-cgl);"></td>
                             <td class="no-print" style="text-align:center;"><button class="btn-remove" onclick="removerLinha(this)">X</button></td>
                         </tr>
                     </tbody>
@@ -142,7 +142,7 @@
 
         <div class="secao-observacoes">
             <h3>LAUDO TÉCNICO / OBSERVAÇÕES E GARANTIA</h3>
-            <textarea></textarea>
+            <textarea placeholder="Anotações gerais, recomendações para o cliente ou termos de garantia..."></textarea>
         </div>
 
         <div class="area-inferior">
@@ -155,7 +155,7 @@
         </div>
 
         <div class="assinatura-area">
-            <div class="assinatura-linha">Assinatura do Cliente</div>
+            <div class="assinatura-linha">Assinatura do Cliente • Reconheço a execução dos serviços e aprovo os valores descritos acima.</div>
         </div>
 
         <br><br>

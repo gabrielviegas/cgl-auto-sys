@@ -49,10 +49,10 @@ function adicionarLinha() {
     let tbody = document.querySelector('#tabela-itens tbody');
     let tr = document.createElement('tr');
     tr.innerHTML = `
-        <td><input type="text"></td>
+        <td><input type="text" placeholder="Ex: Mão de obra suspensão"></td>
         <td><input type="text" class="dinheiro val-peca" value="0,00" oninput="mascaraMoeda(this)"></td>
         <td><input type="text" class="dinheiro val-mo" value="0,00" oninput="mascaraMoeda(this)"></td>
-        <td><input type="text" class="dinheiro val-total-linha" value="0,00" readonly></td>
+        <td><input type="text" class="dinheiro val-total-linha" value="0,00" readonly style="font-weight:bold; color:var(--vermelho-cgl);"></td>
         <td class="no-print" style="text-align:center;"><button class="btn-remove" onclick="removerLinha(this)">X</button></td>
     `;
     tbody.appendChild(tr);
@@ -73,22 +73,16 @@ function calcularTotalOS() {
     document.getElementById('valor-total').value = 'R$ ' + totalGeral.toLocaleString('pt-BR', {minimumFractionDigits: 2});
 }
 
-// --- INTEGRAÇÃO COM PYTHON/SQLITE ---
-window.onload = async function() {
-    document.getElementById('numero-os').value = "Buscando...";
-    try {
-        let res = await fetch('/get_numero');
-        let dados = await res.json();
-        document.getElementById('numero-os').value = String(dados.numero + 1).padStart(4, '0');
-    } catch (e) { document.getElementById('numero-os').value = "ERRO"; }
+// --- NÚMERO DA O.S. (MEMÓRIA LOCAL SIMPLES) ---
+window.onload = function() {
+    let ultimoNumero = localStorage.getItem('ultima_os_cgl');
+    if (!ultimoNumero) { ultimoNumero = 0; }
+    let proximoNumero = parseInt(ultimoNumero) + 1;
+    document.getElementById('numero-os').value = String(proximoNumero).padStart(4, '0');
 };
 
-async function gerarPDF() {
-    let num = parseInt(document.getElementById('numero-os').value);
-    await fetch('/salvar_numero', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ numero: num })
-    });
+function gerarPDF() {
+    let numeroAtual = document.getElementById('numero-os').value;
+    localStorage.setItem('ultima_os_cgl', parseInt(numeroAtual));
     window.print();
 }
