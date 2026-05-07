@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ordem de Serviço - CGL Mecânica</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
 
     <div class="container">
         <div class="header">
             <div class="caixa-logo">
-                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo CGL">
+                <img src="../static/img/logo.png" alt="Logo CGL">
             </div>
             <div class="header-contato">
                 <h2>ORDEM DE SERVIÇO (O.S.)</h2>
@@ -162,6 +162,6 @@
         <button class="btn-imprimir" onclick="gerarPDF()">🖨️ GERAR PDF / IMPRIMIR</button>
     </div>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="../static/js/script.js"></script>
 </body>
 </html>
