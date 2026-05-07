@@ -4,345 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ordem de Serviço - CGL Mecânica</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        :root {
-            --vermelho-cgl: #9a1a1a;
-            --fundo-cinza: #f4f4f4;
-            --borda-cinza: #b5b5b5;
-            --texto-escuro: #333333;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #dbe0e4;
-            color: var(--texto-escuro);
-            margin: 0;
-            padding: 20px;
-            font-size: 12px;
-        }
-
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            padding: 40px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        /* --- Cabeçalho --- */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .caixa-logo {
-            width: 400px;  
-            height: 110px;  
-            position: relative; 
-            overflow: hidden; 
-        }
-
-        .caixa-logo img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 500px; 
-            max-width: none !important; 
-        }
-
-        .header-contato {
-            text-align: right;
-        }
-
-        .header-contato h2 {
-            color: var(--vermelho-cgl);
-            margin: 0 0 2px 0;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .header-contato p {
-            margin: 0;
-            color: #555;
-            font-size: 11px;
-        }
-
-        /* --- Título Centralizado --- */
-        .titulo-faixa {
-            border-top: 1.5px solid #000;
-            border-bottom: 1.5px solid #000;
-            text-align: center;
-            padding: 8px 0;
-            margin-bottom: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
-
-        /* --- Estrutura das Seções ---- */
-        .secao {
-            margin-bottom: 15px;
-            border: 1px solid var(--borda-cinza);
-            border-radius: 3px;
-            background-color: var(--fundo-cinza);
-        }
-
-        .secao-titulo {
-            background-color: var(--vermelho-cgl);
-            color: white;
-            font-weight: bold;
-            padding: 6px 10px;
-            font-size: 11px;
-        }
-
-        .secao-conteudo {
-            padding: 10px;
-            background-color: #fff;
-        }
-
-        /* --- Layout em Linhas e Colunas --- */
-        .linha {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 8px;
-        }
-        .linha:last-child { margin-bottom: 0; }
-
-        .campo {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            flex: 1;
-        }
-
-        .campo label {
-            font-weight: bold;
-            white-space: nowrap;
-            color: #444;
-        }
-
-        .campo input {
-            flex: 1;
-            padding: 4px 6px;
-            border: 1px solid var(--borda-cinza);
-            border-radius: 3px;
-            font-size: 12px;
-            width: 100%;
-        }
-
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--vermelho-cgl);
-        }
-
-        .w-20 { flex: 0.2 !important; }
-        .w-30 { flex: 0.3 !important; }
-        .w-40 { flex: 0.4 !important; }
-        .w-50 { flex: 0.5 !important; }
-
-        .duas-colunas {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            width: 100%;
-        }
-        .duas-colunas .secao {
-            flex: 1;
-            margin-bottom: 0;
-        }
-
-        /* --- Seção de Observações --- */
-        .secao-observacoes {
-            margin-bottom: 15px;
-            border: 1px solid var(--borda-cinza);
-            background-color: #fff;
-            padding: 10px;
-            min-height: 100px;
-            border-radius: 3px;
-        }
-
-        .secao-observacoes h3 {
-            margin: 0 0 10px 0;
-            font-size: 11px;
-            color: #000;
-        }
-
-        .secao-observacoes textarea {
-            width: 100%;
-            height: 70px;
-            background: transparent;
-            border: none;
-            resize: none;
-            font-family: inherit;
-            font-size: 12px;
-            line-height: 25px;
-            background-image: linear-gradient(transparent, transparent 24px, #ccc 25px);
-            background-size: 100% 25px;
-        }
-
-        /* --- Textareas Normais --- */
-        .bloco-texto { margin-bottom: 15px; }
-        .bloco-texto label { display: block; font-weight: bold; margin-bottom: 4px; color: #444; }
-        .bloco-texto textarea { 
-            width: 100%; 
-            padding: 6px; 
-            border: 1px solid var(--borda-cinza); 
-            border-radius: 3px; 
-            min-height: 50px; 
-            font-family: inherit;
-            resize: vertical;
-        }
-
-        /* --- Tabela Dinâmica de Serviços e Peças --- */
-        .tabela-servicos {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 10px;
-        }
-        .tabela-servicos th {
-            background-color: #e0e0e0;
-            color: #333;
-            padding: 6px;
-            font-size: 11px;
-            text-align: left;
-            border: 1px solid var(--borda-cinza);
-        }
-        .tabela-servicos td {
-            padding: 4px;
-            border: 1px solid var(--borda-cinza);
-        }
-        .tabela-servicos input {
-            width: 100%;
-            border: 1px solid transparent; 
-            background: transparent;
-            padding: 4px;
-            font-size: 12px;
-            font-family: inherit;
-        }
-        .tabela-servicos input:focus {
-            border: 1px solid var(--vermelho-cgl);
-            background: #fff;
-        }
-        .tabela-servicos .dinheiro {
-            text-align: right;
-        }
-        
-        /* Botões de Ação da Tabela */
-        .btn-add {
-            background-color: var(--vermelho-cgl);
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 11px;
-            font-weight: bold;
-            transition: 0.2s;
-        }
-        .btn-add:hover { background-color: #7a1515; }
-        
-        .btn-remove {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 10px;
-        }
-
-        /* --- Rodapé (Valor e Assinatura) --- */
-        .area-inferior {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 10px;
-            margin-bottom: 40px;
-        }
-
-        .box-total {
-            display: flex;
-            border: 2px solid var(--vermelho-cgl);
-            border-radius: 3px;
-            width: 250px;
-        }
-
-        .label-total {
-            background-color: var(--vermelho-cgl);
-            color: white;
-            font-weight: bold;
-            padding: 8px 12px;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-        }
-
-        .input-total {
-            flex: 1;
-            background-color: #fcf1f1;
-            padding: 0 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .input-total input {
-            width: 100%;
-            border: none;
-            background: transparent;
-            text-align: right;
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--vermelho-cgl);
-            padding: 0;
-        }
-
-        .assinatura-area {
-            text-align: center;
-            margin-top: 50px;
-        }
-        
-        .assinatura-linha {
-            border-top: 1.5px solid #000;
-            width: 80%;
-            margin: 0 auto;
-            padding-top: 5px;
-            font-weight: bold;
-            font-size: 12px;
-        }
-
-        /* --- Impressão --- */
-        .btn-imprimir {
-            display: block; width: 100%; padding: 15px; background-color: #27ae60; color: white; border: none; border-radius: 4px; font-size: 14px; font-weight: bold; cursor: pointer;
-        }
-        
-        @page { size: A4; margin: 0; }
-        @media print {
-            body { background-color: white; padding: 10mm 15mm; }
-            .container { box-shadow: none; padding: 0; }
-            .btn-imprimir, .no-print { display: none !important; }
-            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            input, textarea { border: 1px solid #ddd; }
-            .tabela-servicos input { border: none; }
-            .secao-observacoes textarea { border: none; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
-        
         <div class="header">
             <div class="caixa-logo">
                 <img src="logo.png" alt="Logo CGL">
             </div>
-            
             <div class="header-contato">
                 <h2>ORDEM DE SERVIÇO (O.S.)</h2>
                 <p>Mecânica em Geral</p>
@@ -363,7 +33,7 @@
                 <div class="linha">
                     <div class="campo w-30">
                         <label>CEP:</label> 
-                        <input type="text" id="cep" maxlength="9" oninput="mascaraCEP(this)" onblur="buscarEndereco(this.value)" placeholder="Digite o CEP">
+                        <input type="text" id="cep" maxlength="9" oninput="mascaraCEP(this)" onblur="buscarEndereco(this.value)" placeholder="00000-000">
                     </div>
                     <div class="campo">
                         <label>Endereço:</label> <input type="text" id="endereco" placeholder="Rua, Bairro, Cidade">
@@ -378,7 +48,7 @@
                 <div class="linha">
                     <div class="campo">
                         <label>Telefone:</label> 
-                        <input type="text" oninput="mascaraTelefone(this)" maxlength="15" placeholder="(XX) XXXXX-XXXX">
+                        <input type="text" oninput="mascaraTelefone(this)" maxlength="15" placeholder="(19) 00000-0000">
                     </div>
                     <div class="campo">
                         <label>E-mail:</label> <input type="text" placeholder="cliente@email.com">
@@ -393,23 +63,23 @@
                 <div class="secao-conteudo">
                     <div class="linha">
                         <div class="campo">
-                            <label>Marca:</label> <input type="text" placeholder="Ex: Chevrolet">
+                            <label>Marca:</label> <input type="text">
                         </div>
                         <div class="campo">
-                            <label>Modelo:</label> <input type="text" placeholder="Ex: Corsa">
+                            <label>Modelo:</label> <input type="text">
                         </div>
                     </div>
                     <div class="linha">
                         <div class="campo">
-                            <label>Motor/Versão:</label> <input type="text" placeholder="Ex: Classic 1.0">
+                            <label>Motor:</label> <input type="text">
                         </div>
                         <div class="campo w-40">
-                            <label>Ano:</label> <input type="text" maxlength="4" placeholder="2004">
+                            <label>Ano:</label> <input type="text" maxlength="4">
                         </div>
                     </div>
                     <div class="linha">
                         <div class="campo">
-                            <label>Data Entrada:</label> <input type="date">
+                            <label>Entrada:</label> <input type="date">
                         </div>
                     </div>
                 </div>
@@ -423,12 +93,12 @@
                             <label>Placa:</label> <input type="text" style="text-transform: uppercase;">
                         </div>
                         <div class="campo">
-                            <label>KM Entrada:</label> <input type="text" placeholder="Ex: 56.400">
+                            <label>KM:</label> <input type="text">
                         </div>
                     </div>
                     <div class="linha">
                         <div class="campo">
-                            <label>Data Saída:</label> <input type="date">
+                            <label>Saída:</label> <input type="date">
                         </div>
                         <div class="campo w-50">
                             <label>Nº O.S.:</label> <input type="text" id="numero-os" style="text-align: center; font-weight: bold; color: red;">
@@ -442,28 +112,26 @@
             <div class="secao-titulo">4. DIAGNÓSTICO E SERVIÇOS EXECUTADOS</div>
             <div class="secao-conteudo">
                 <div class="bloco-texto">
-                    <label>Relato do Cliente / Problema Apresentado:</label>
-                    <textarea placeholder="Ex: O carro não estava ligando mesmo com chupeta..."></textarea>
+                    <label>Relato do Cliente:</label>
+                    <textarea placeholder="Problemas relatados..."></textarea>
                 </div>
-                
-                <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #444;">Detalhamento de Peças e Mão de Obra:</label>
                 
                 <table class="tabela-servicos" id="tabela-itens">
                     <thead>
                         <tr>
-                            <th>Descrição (Peça ou Serviço)</th>
+                            <th>Descrição</th>
                             <th width="15%">Peça (R$)</th>
                             <th width="15%">M. Obra (R$)</th>
                             <th width="15%">Total (R$)</th>
-                            <th width="5%" class="no-print" style="text-align: center;">Ação</th>
+                            <th width="5%" class="no-print">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="text" placeholder="Ex: Bateria Nova 60Ah"></td>
-                            <td><input type="text" class="dinheiro val-peca" placeholder="0,00" oninput="mascaraMoeda(this)"></td>
-                            <td><input type="text" class="dinheiro val-mo" placeholder="0,00" oninput="mascaraMoeda(this)"></td>
-                            <td><input type="text" class="dinheiro val-total-linha" placeholder="0,00" readonly style="font-weight:bold; color:var(--vermelho-cgl);"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text" class="dinheiro val-peca" value="0,00" oninput="mascaraMoeda(this)"></td>
+                            <td><input type="text" class="dinheiro val-mo" value="0,00" oninput="mascaraMoeda(this)"></td>
+                            <td><input type="text" class="dinheiro val-total-linha" value="0,00" readonly></td>
                             <td class="no-print" style="text-align:center;"><button class="btn-remove" onclick="removerLinha(this)">X</button></td>
                         </tr>
                     </tbody>
@@ -473,8 +141,8 @@
         </div>
 
         <div class="secao-observacoes">
-            <h3>OBSERVAÇÕES GERAIS / GARANTIA</h3>
-            <textarea placeholder="Anotações gerais, recomendações para o cliente ou termos de garantia..."></textarea>
+            <h3>LAUDO TÉCNICO / OBSERVAÇÕES E GARANTIA</h3>
+            <textarea></textarea>
         </div>
 
         <div class="area-inferior">
@@ -487,128 +155,13 @@
         </div>
 
         <div class="assinatura-area">
-            <div class="assinatura-linha">
-                Assinatura do Cliente • Reconheço a execução dos serviços e aprovo os valores descritos acima.
-            </div>
+            <div class="assinatura-linha">Assinatura do Cliente</div>
         </div>
 
         <br><br>
         <button class="btn-imprimir" onclick="gerarPDF()">🖨️ GERAR PDF / IMPRIMIR</button>
     </div>
 
-    <script>
-        // --- MÁSCARAS DE TEXTO (Nome, Telefone, CEP) ---
-        function somenteLetras(input) {
-            input.value = input.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
-        }
-
-        function mascaraTelefone(input) {
-            let valor = input.value.replace(/\D/g, ''); 
-            if (valor.length <= 10) {
-                valor = valor.replace(/^(\d{2})(\d)/g, '($1) $2');
-                valor = valor.replace(/(\d{4})(\d)/, '$1-$2');
-            } else {
-                valor = valor.replace(/^(\d{2})(\d)/g, '($1) $2');
-                valor = valor.replace(/(\d{5})(\d)/, '$1-$2');
-            }
-            input.value = valor;
-        }
-
-        function mascaraCEP(input) {
-            let valor = input.value.replace(/\D/g, '');
-            valor = valor.replace(/^(\d{5})(\d)/, '$1-$2');
-            input.value = valor;
-        }
-
-        async function buscarEndereco(cepOriginal) {
-            let cep = cepOriginal.replace(/\D/g, '');
-            let campoEndereco = document.getElementById('endereco');
-            let campoNumero = document.getElementById('numero-casa');
-
-            if (cep.length === 8) {
-                campoEndereco.value = "Buscando...";
-                try {
-                    let resposta = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-                    let dados = await resposta.json();
-                    if (!dados.erro) {
-                        campoEndereco.value = `${dados.logradouro} - ${dados.bairro}, ${dados.localidade}-${dados.uf}`;
-                        campoNumero.focus();
-                    } else {
-                        campoEndereco.value = "CEP não encontrado.";
-                    }
-                } catch (erro) {
-                    campoEndereco.value = "Erro ao buscar CEP.";
-                }
-            }
-        }
-
-        // --- SISTEMA DA TABELA E CÁLCULO FINANCEIRO ---
-        function mascaraMoeda(input) {
-            let valor = input.value.replace(/\D/g, ''); 
-            if(valor === "") valor = "0";
-            
-            valor = (parseInt(valor) / 100).toFixed(2) + '';
-            valor = valor.replace(".", ",");
-            valor = valor.replace(/(\d)(\d{3})(\d{3}),/g, "$1.$2.$3,");
-            valor = valor.replace(/(\d)(\d{3}),/g, "$1.$2,");
-            
-            input.value = valor;
-            calcularTotalOS(); 
-        }
-
-        function adicionarLinha() {
-            let tbody = document.querySelector('#tabela-itens tbody');
-            let tr = document.createElement('tr');
-            
-            tr.innerHTML = `
-                <td><input type="text" placeholder="Ex: Mão de obra suspensão"></td>
-                <td><input type="text" class="dinheiro val-peca" placeholder="0,00" oninput="mascaraMoeda(this)"></td>
-                <td><input type="text" class="dinheiro val-mo" placeholder="0,00" oninput="mascaraMoeda(this)"></td>
-                <td><input type="text" class="dinheiro val-total-linha" placeholder="0,00" readonly style="font-weight:bold; color:var(--vermelho-cgl);"></td>
-                <td class="no-print" style="text-align:center;"><button class="btn-remove" onclick="removerLinha(this)">X</button></td>
-            `;
-            tbody.appendChild(tr);
-        }
-
-        function removerLinha(botao) {
-            botao.closest('tr').remove(); 
-            calcularTotalOS(); 
-        }
-
-        function calcularTotalOS() {
-            let linhas = document.querySelectorAll('#tabela-itens tbody tr');
-            let totalGeral = 0;
-
-            linhas.forEach(linha => {
-                let pecaStr = linha.querySelector('.val-peca').value.replace(/\./g, '').replace(',', '.');
-                let moStr = linha.querySelector('.val-mo').value.replace(/\./g, '').replace(',', '.');
-                
-                let valorPeca = parseFloat(pecaStr) || 0;
-                let valorMO = parseFloat(moStr) || 0;
-                
-                let totalLinha = valorPeca + valorMO;
-                
-                linha.querySelector('.val-total-linha').value = totalLinha.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-                totalGeral += totalLinha;
-            });
-
-            document.getElementById('valor-total').value = 'R$ ' + totalGeral.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        }
-
-        // --- NÚMERO DA O.S. AUTOMÁTICO ---
-        window.onload = function() {
-            let ultimoNumero = localStorage.getItem('ultima_os_cgl');
-            if (!ultimoNumero) { ultimoNumero = 0; }
-            let proximoNumero = parseInt(ultimoNumero) + 1;
-            document.getElementById('numero-os').value = String(proximoNumero).padStart(4, '0');
-        };
-
-        function gerarPDF() {
-            let numeroAtual = document.getElementById('numero-os').value;
-            localStorage.setItem('ultima_os_cgl', parseInt(numeroAtual));
-            window.print();
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
